@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="assets/css/sub.css" />
+
+<style>
+div#test{ border:#000 1px solid; padding:10px 40px 40px 40px; }
+</style>
+<script>
+var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
+var questions = [
+    [ "Which of the following commands will create a list?" ,"list1 = list()" ,"list1 = []", "list1 = list([1, 2, 3])" ,"all of the mentioned" ,"D"],
+	["What is the output when we execute list(“hello”)?", "[‘h’, ‘e’, ‘l’, ‘l’, ‘o’]","[‘hello’]","[‘llo’]","[‘olleh’]" ,"A" ],
+	["Suppose list1 is [4, 2, 2, 4, 5, 2, 1, 0], Which of the following is correct syntax for slicing operation?", "print(list1[0])","print(list1[:2])", "print(list1[:-2])","All of the above", "D"],
+	["Suppose list1 is [2, 33, 222, 14, 25], What is list1[:-1]?" ,"[2, 33, 222, 14]", "Error", "25" ,"[25, 14, 222, 33, 2]" ,"A" ]
+];
+function _(x){
+	return document.getElementById(x);
+}
+function renderQuestion(){
+	test = _("test");
+	if(pos >= questions.length){
+		test.innerHTML = "<h1>You got "+correct+" of "+questions.length+" questions correct</h1>";
+		_("test_status").innerHTML = "Test Completed";
+		pos = 0;
+		correct = 0;
+		return false;
+	}
+	_("test_status").innerHTML = "<h1>Question "+(pos+1)+" of "+questions.length+ "</h1>";
+	question = questions[pos][0];
+	chA = questions[pos][1];
+	chB = questions[pos][2];
+	chC = questions[pos][3];
+  chD = questions[pos][4];
+	test.innerHTML = "<h2>"+question+"</h2>";
+	test.innerHTML += "<h3><input type='radio' name='choices' value='A'> "+chA+"<br></h3>";
+	test.innerHTML += "<h3><input type='radio' name='choices' value='B'> "+chB+"<br></h3>";
+	test.innerHTML += "<h3><input type='radio' name='choices' value='C'> "+chC+"<br></h3>";
+  test.innerHTML += "<h3><input type='radio' name='choices' value='D'> "+chD+"<br><br></h3>";
+	test.innerHTML += "<button onclick='checkAnswer()'><h3>Submit Answer</h3></button>";
+}
+function checkAnswer(){
+	choices = document.getElementsByName("choices");
+	for(var i=0; i<choices.length; i++){
+		if(choices[i].checked){
+			choice = choices[i].value;
+		}
+	}
+	if(choice == questions[pos][5]){
+		correct++;
+	}
+	pos++;
+	renderQuestion();
+}
+window.addEventListener("load", renderQuestion, false);
+</script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="jumbotron">
+  <div class="container">
+    <img src="http://jimkulakowski.com/web-design/img/parallax-backgrounds/space.jpg" alt="Image of mac laptop on a desk" class="parallax-img">
+    <img src="#" alt="Anything" class="profile-img">
+    <h1 style="color:white">Python Basic Test</h1>
+    <hr class="style-seven" />
+    <h4 style="color:grey">For any help directly email at the given details</h4>
+<p>
+      <a class="btn btn-lg btn-clear-light soft-transition" href="#" role="button" target="_blank"><i class="fa fa-twitter"> Twitter</i></a>
+      <a class="btn btn-lg btn-clear-light soft-transition" href="#" role="button" target="_blank"><i class="fa fa-github-square"> Github</i></a>
+      <a class="btn btn-lg btn-clear-light soft-transition" href="#" role="button" target="_blank"><i class="fa fa-linkedin-square"> LinkedIn</i></a>
+    </p>
+  </div>
+</div>
+
+<!------------------------------------
+		--     Begin Main Page Content      --
+		------------------------------------->
+<div class="container-fluid">
+
+  <!-- Fixed Navbar -->
+  <nav class="navbar  navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+      <div class="container">
+
+        <!-- Mobile menu button -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+        <!-- Site Branding -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img src="" alt="Logo" class="site-logo">
+            <p>Team NOOBS</p>
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <!-- END .navbar-collapse -->
+      </div>
+      <!-- END .container -->
+    </div>
+    <!-- END .container-fluid -->
+  </nav>
+<h2 id="test_status" style="text-align: center;" ></h2>
+<div id="test" style="text-align: center;" ></div>
+<br><br></div>
+<section id="contact" class="teall-bg">
+
+    <div class="container">
+
+      <h1>Contact</h1>
+      <hr class="style-seven" />
+
+      <!-- Form HTML -->
+      <form action="#contact" method="post">
+        <fieldset class="form-group">
+          <input type="name" class="form-control" id="input_name" placeholder="Enter your Name" name="name">
+        </fieldset>
+        <fieldset class="form-group">
+          <input type="email" class="form-control" id="input_email" placeholder="Enter your E-mail Address" name="email">
+          <!--
+							<small class="">I'll never share your email with anyone else.</small>
+							-->
+
+        </fieldset>
+        <fieldset class="form-group">
+          <textarea class="form-control" id="input_project_info" rows="3" placeholder="Tell me about your project!" name="message"></textarea>
+        </fieldset>
+    </div>
+    <input type="submit" id="submit" class="btn btn-clear-light soft-transition" name="submit" value="Send">
+    </form>
+    <div style="margin-left:0px">
+    <h1>Reach Us Out At<h1>
+    <ul style="list-style-type: none;"><li>Email Us At <a href="mailto:prakharsharma22@gmail.com">prakharsharma22@gmail.com</a></li>
+                                       <li>Call Us At  <a href="tel:+919599179794"> +91-9599179794</a></li>
+    </ul>
+    </div><br><br>
+    <h5>Hope You Had A Good Experience</h5>
+</div>
+
+</section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!--<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>-->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <!--<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="assets/js/sub.js"></script>
+</body>
+</html>
